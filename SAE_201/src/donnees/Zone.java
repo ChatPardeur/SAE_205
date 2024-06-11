@@ -1,6 +1,7 @@
 package donnees;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Zone
 {
@@ -8,10 +9,10 @@ public class Zone
 
     private ArrayList<Fauteuil> fauteuils;
 
-    public Zone(String nom, Fauteuil fauteuil) {
+    public Zone(String nom) {
         this.nom = nom;
         this.fauteuils = new ArrayList<>();
-        this.fauteuils.add(fauteuil);
+        this.fauteuils.add(new Fauteuil("a", "1"));
     }
 
     public boolean contientfauteuil(Fauteuil f)
@@ -58,4 +59,45 @@ public class Zone
             return "operation effectuée";
         }
     }
+    
+    public void listerFauteuils()
+    {
+    	Iterator<Fauteuil> it = fauteuils.iterator();
+    	
+    	while(it.hasNext())
+    	{
+    		it.next().afficher();
+    	}
+    }
+    
+    public boolean ajouterFauteuils(int nbRangees, int nbNumeros)
+    {
+    	if(nbRangees > 25)
+    	{
+    		System.out.println("erreur : il ne peut pas y avoir plus de 26 rangées");
+    		return false;
+    	}
+    	else
+    	{
+    		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    		
+    		for(int rangee = 0; rangee < nbRangees; rangee++)
+    		{
+    			for(int numero = 0; numero < nbNumeros+1; numero++)
+    			{
+    				ajouteF(new Fauteuil(Character.toString(alphabet.toCharArray()[rangee]), Integer.toString(numero)));
+    			}
+    		}
+    		return true;
+    	}
+    }
+
+   public static void main(String[] args)
+   {
+	   Zone z = new Zone("test");
+	   z.ajouterFauteuils(10, 10);
+	   z.listerFauteuils();
+	   
+	   
+   }
 }

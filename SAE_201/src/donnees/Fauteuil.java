@@ -10,4 +10,9 @@ public class Fauteuil
         this.rangee = rangee;
         this.numero = numero;
     }
+    
+    public void afficher()
+    {
+    	System.out.println(rangee + " " + numero);
+    }
 }
