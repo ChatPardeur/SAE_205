@@ -1,0 +1,24 @@
+package Tp4;
+
+public class Cercle extends FormeGeometrique
+{
+	private double rayon;
+	private String couleur;
+	
+	public Cercle(double x, double y, double r, String c) 
+	{
+		super(x,y);
+		this.rayon = r;
+		this.couleur = c;
+	}
+	
+	public double surface()
+	{
+		return rayon*rayon * Math.PI;
+	}
+	
+	public double perimetre()
+	{
+		return 2 * Math.PI * rayon;
+	}
+}

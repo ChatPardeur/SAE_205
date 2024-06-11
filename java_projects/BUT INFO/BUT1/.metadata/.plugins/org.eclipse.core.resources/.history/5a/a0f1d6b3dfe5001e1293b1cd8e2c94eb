@@ -1,0 +1,6 @@
+package Tp4;
+
+interface Comparable<T>
+{
+	public int compareTo(T autre);
+}

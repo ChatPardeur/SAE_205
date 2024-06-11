@@ -1,0 +1,13 @@
+package Tp4;
+
+import java.util.ArrayList;
+
+public class ListeRectangles 
+{
+	private ArrayList<Rectangle> liste;
+	
+	public ListeRectangles() 
+	{
+		this.liste = new ArrayList<Rectangle>();
+	}
+}

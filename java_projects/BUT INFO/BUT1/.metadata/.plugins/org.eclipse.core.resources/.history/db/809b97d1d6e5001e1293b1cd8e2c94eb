@@ -1,0 +1,13 @@
+package Tp4;
+
+public class Rectangle extends FormeGeometrique
+{
+	private float longueur;
+	private float largeur;
+
+	public Rectangle(double x, double y, float lougueur, float largeur) 
+	{
+		super(x,y);
+		
+	}
+}

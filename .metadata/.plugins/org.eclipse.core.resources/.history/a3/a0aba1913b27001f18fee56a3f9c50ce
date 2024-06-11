@@ -1,0 +1,13 @@
+package donnees;
+
+
+public class Abonne extends Tarification{
+
+    public Abonne() {
+    }
+
+    @Override
+    public double calculReduc(int tarif) {
+        return tarif * 0.6;
+    }
+}

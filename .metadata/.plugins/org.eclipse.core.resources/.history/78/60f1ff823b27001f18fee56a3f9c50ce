@@ -1,0 +1,12 @@
+package donnees;
+
+public class Senior extends Tarification{
+
+    public Senior() {
+    }
+
+    @Override
+    public double calculReduc(int tarif) {
+        return tarif * 0.75;
+    }
+}

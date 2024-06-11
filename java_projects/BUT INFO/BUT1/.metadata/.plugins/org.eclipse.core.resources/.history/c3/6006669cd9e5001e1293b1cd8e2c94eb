@@ -1,0 +1,29 @@
+package Tp4;
+
+public class Rectangle extends FormeGeometrique implements Dessinable
+{
+	private float longueur;
+	private float largeur;
+
+	public Rectangle(double x, double y, float lougueur, float largeur) 
+	{
+		super(x,y);
+		this.longueur = longueur;
+		this.largeur = largeur;
+	}
+	
+	public double surface()
+	{
+		return this.longueur * this.largeur;
+	}
+	
+	public double perimetre()
+	{
+		return this.longueur * 2 + this.largeur * 2;
+	}
+	
+	public void dessiner(String couleur)
+	{
+		System.out.println("un rectangle de couleur " + couleur);
+	}
+}

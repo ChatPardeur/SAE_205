@@ -1,0 +1,11 @@
+package donnees;
+
+import java.util.Date;
+
+public class AnnulationClient extends Annulation
+{
+    public AnnulationClient(Date date, Boolean remboursementEffectue, Reservation reservation)
+    {
+        super(date, remboursementEffectue, reservation);
+    }
+}

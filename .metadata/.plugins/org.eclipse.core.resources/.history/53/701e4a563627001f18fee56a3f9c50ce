@@ -1,0 +1,31 @@
+package donnees;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+
+public class AnnulationClient extends Annulation
+{
+	
+    public AnnulationClient(Date date, Boolean remboursementEffectue, Reservation reservation)
+    {
+        super(date, remboursementEffectue, reservation);
+    }
+    
+    public ArrayList<String> detail()
+    {
+    	String nomClient = getReservation().getClient().getNom();
+    	String numClient = getReservation().getClient().getNumero();
+    	String nomSpectacle = getReservation().getRepresentation().getSpectacle().getNom();
+    	String dateHeure = getReservation().getRepresentation().getJour() + " " + getReservation().getRepresentation().getHeure();
+    	String dateAnnulation = getDate().toString();
+    	String nbBilletsVendus = Integer.toString(getReservation().getBillets().size());
+    	String nbBilletsRetournes;
+    	String totalRemboursement;
+    	
+    	if(getRemboursementEffectue())
+    	{
+    		nbBilletsRetournes = nbBilletsVendus;
+    	}
+    }
+}

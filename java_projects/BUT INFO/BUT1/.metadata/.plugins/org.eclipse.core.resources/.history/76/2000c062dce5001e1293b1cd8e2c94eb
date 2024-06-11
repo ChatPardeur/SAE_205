@@ -1,0 +1,29 @@
+package Tp4;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ListeRectangles 
+{
+	private ArrayList<Rectangle> liste;
+	
+	public ListeRectangles() 
+	{
+		this.liste = new ArrayList<Rectangle>();
+	}
+	
+	public void ajouter(Rectangle r)
+	{
+		this.liste.add(r);
+	}
+	
+	public void afficher()
+	{
+		Iterator<Rectangle> it = liste.iterator();
+		
+		while (it.hasNext())
+		{
+			it.next().afficher();
+		}
+	}
+}

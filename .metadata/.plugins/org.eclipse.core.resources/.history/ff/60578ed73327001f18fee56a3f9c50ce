@@ -1,0 +1,22 @@
+package donnees;
+
+import java.util.ArrayList;
+
+public class Spectacle
+{
+    private String nom;
+    private int duree;
+    private int nbreMaxSpect;
+    private String genre;
+
+
+    public Spectacle(String nom, int duree, int nbreMaxSpect, String genre)
+    {
+        this.nom = nom;
+        this.duree = duree;
+        this.nbreMaxSpect = nbreMaxSpect;
+        this.genre = genre;
+    }
+
+
+}

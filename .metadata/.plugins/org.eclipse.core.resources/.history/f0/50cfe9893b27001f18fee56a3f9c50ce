@@ -1,0 +1,11 @@
+package donnees;
+
+public class Jeune extends Tarification{
+    public Jeune() {
+    }
+
+    @Override
+    public double calculReduc(int tarif) {
+        return tarif * 0.6;
+    }
+}

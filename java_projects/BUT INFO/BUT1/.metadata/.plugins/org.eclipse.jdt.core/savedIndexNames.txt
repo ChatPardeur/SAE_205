@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+C:\Users\bapti\OneDrive\Documents\dev_java\java_projects\BUT INFO\BUT1\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+250557399.index
+339077034.index
+3271193799.index

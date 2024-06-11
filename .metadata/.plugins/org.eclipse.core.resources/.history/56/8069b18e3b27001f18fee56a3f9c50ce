@@ -1,0 +1,13 @@
+package donnees;
+
+public class Adulte extends Tarification{
+
+    public Adulte() {
+    }
+
+    @Override
+    public double calculReduc(int tarif)
+    {
+        return tarif;
+    }
+}

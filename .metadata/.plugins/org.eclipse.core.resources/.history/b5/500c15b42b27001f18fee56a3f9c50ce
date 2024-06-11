@@ -1,0 +1,16 @@
+
+package donnees;
+
+public class Tarif 
+{
+	private Spectacle spectacle;
+	private Zone zone;
+	private double pleinTarif;
+	
+	public Tarif(Spectacle s, Zone z, double pleinTarif) 
+	{
+		this.spectacle = s;
+		this.zone = z;
+		this.pleinTarif = pleinTarif;
+	}
+}
