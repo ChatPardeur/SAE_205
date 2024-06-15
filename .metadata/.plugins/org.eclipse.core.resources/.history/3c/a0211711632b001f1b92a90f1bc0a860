@@ -1,0 +1,29 @@
+package vue;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class CtrlAccueil {
+
+    @FXML
+    private Button bnCreaZone;
+
+    @FXML
+    private Button bnListeReservAnnule;
+
+    @FXML
+    private Button bnQuitter;
+
+    @FXML
+    void clickCreationZone(ActionEvent event) {
+
+    }
+
+    @FXML
+    void fermer(ActionEvent event) 
+    {
+    	System.out.println("cc");
+    }
+
+}

@@ -1,0 +1,25 @@
+package vue;
+
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+public class FenAccueil extends Stage{
+
+	public FenAccueil() {
+		this.setTitle("Le Patio - Accueil");
+		
+	}
+	
+	private Pane creerSceneGraphe() throws IOException
+	{
+     	FXMLLoader loader = new FXMLLoader();
+     	loader.setLocation(getClass().getResource("C:\\Users\\bapti\\OneDrive\\Documents\\dev_java\\SAE_201\\bin\\vue\Accueil.fxml"));
+     	Pane root = loader.load();
+     	loader.getController();
+     	return root;
+     	
+	}
+}
