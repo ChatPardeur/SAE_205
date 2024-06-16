@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.CtrlCreationZone">
    <children>
-      <AnchorPane prefHeight="397.0" prefWidth="800.0">
+      <AnchorPane prefHeight="580.0" prefWidth="650.0">
          <children>
-            <TextField layoutX="107.0" layoutY="46.0" />
-            <Button layoutX="686.0" layoutY="334.0" mnemonicParsing="false" prefWidth="100.0" text="Annuler" />
-            <Button layoutX="561.0" layoutY="334.0" mnemonicParsing="false" prefWidth="100.0" text="Créer la zone" />
-            <Text layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de zone :" wrappingWidth="92.53670883178711" />
-            <HBox layoutX="14.0" layoutY="105.0" prefHeight="42.0" prefWidth="200.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de zone :" wrappingWidth="92.53670883178711" />
-                  <TextField />
-               </children>
-            </HBox>
+            <TextField fx:id="nomZone" layoutX="173.0" layoutY="135.0" prefHeight="26.0" prefWidth="198.0" />
+            <Text layoutX="14.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de zone :" wrappingWidth="107.99999999999994">
+               <font>
+                  <Font size="15.0" />
+               </font></Text>
+            <Text layoutX="14.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de sièges" wrappingWidth="198.39999999999998">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de lignes :" wrappingWidth="137.59997558593744">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="nbLigne" layoutX="175.0" layoutY="293.0" prefHeight="26.0" prefWidth="73.0" promptText="(1-26)" />
+            <Text layoutX="295.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Création d'une zone" wrappingWidth="236.7999328613281">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de colonnes :" wrappingWidth="159.19995117187494">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="382.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(ex : Balcon)" />
+            <TextField fx:id="nbColonne" layoutX="175.0" layoutY="368.0" prefHeight="26.0" prefWidth="73.0" promptText="(1-26)" />
+            <Button fx:id="bnCreer" layoutX="482.0" layoutY="534.0" mnemonicParsing="false" onAction="#clickCreer" prefWidth="100.0" text="Créer la zone" />
+            <Button fx:id="bnAnnuler" layoutX="616.0" layoutY="534.0" mnemonicParsing="false" onAction="#clickAnnuler" prefWidth="100.0" text="Annuler" />
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </AnchorPane>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>

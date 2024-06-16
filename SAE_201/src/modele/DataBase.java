@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 public class DataBase {
 	static public ArrayList<AnnulationClient> annulations2 = new ArrayList<AnnulationClient>();
 	static public ObservableList<AnnulationClient> annulations = FXCollections.observableArrayList();
+	static public ObservableList<Zone> zones = FXCollections.observableArrayList();
 	
 	
 	static public void chargerReservationsAnnulees() throws ParseException
@@ -34,5 +35,18 @@ public class DataBase {
 						new Client("Castille", "Claude", "avenue", "0506070809", "cc@orange.com", "452")));
 	}
 	
+	static public void ajouterZone(Zone zone) 
+	{
+	        zones.add(zone);
+	}
+	public static boolean zoneExiste(String nom) 
+	{
+	    for (Zone zone : zones) {
+	        if (zone.getNom().equalsIgnoreCase(nom)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
 
 }

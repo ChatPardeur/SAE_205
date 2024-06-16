@@ -1,9 +1,13 @@
 package vue;
 
+import controleur.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import modele.DataBase;
+import modele.Zone;
 
 public class CtrlCreationZone {
 
@@ -21,15 +25,86 @@ public class CtrlCreationZone {
 
     @FXML
     private TextField nomZone;
+    
+   
 
     @FXML
     void clickAnnuler(ActionEvent event) {
-
+        Main.fermerCreation();
     }
 
     @FXML
     void clickCreer(ActionEvent event) {
+        String nom = nomZone.getText();
+        String nbLigneStr = nbLigne.getText();
+        String nbColonneStr = nbColonne.getText();
 
+        // Valider le nom de la zone
+        if (nom.isEmpty()) {
+            afficherMessage("Erreur Nom", "Le nom de la zone doit être rempli.");
+            
+        }
+
+        if (!nom.matches("[a-zA-Z]+")) {
+            afficherMessage("Erreur Nom", "Le nom de la zone doit contenir uniquement des lettres alphabétiques.");
+            
+        }
+
+        // Vérifier si une zone avec le même nom existe déjà
+        if (DataBase.zoneExiste(nom)) {
+            afficherMessage("Erreur Nom", "Une zone avec ce nom existe déjà. Veuillez choisir un nom différent.");
+            
+        }
+
+        // Valider les valeurs de lignes et de colonnes
+        if (nbLigneStr.isEmpty() || nbColonneStr.isEmpty()) {
+            afficherMessage("Erreur Lignes/Colonnes", "Les champs de lignes et de colonnes doivent être remplis.");
+            
+        }
+
+        int nbRangees, nbNumeros;
+        try {
+            nbRangees = Integer.parseInt(nbLigneStr);
+        } catch (NumberFormatException e) {
+            afficherMessage("Erreur Lignes/Colonnes", "Le nombre de lignes doit être un nombre.");
+            return;
+        }
+
+        try {
+            nbNumeros = Integer.parseInt(nbColonneStr);
+        } catch (NumberFormatException e) {
+            afficherMessage("Erreur Lignes/Colonnes", "Le nombre de colonnes doit être un nombre.");
+            return;
+        }
+
+        if (nbRangees > 25) {
+            afficherMessage("Erreur Lignes/Colonnes", "Le nombre de lignes ne peut pas dépasser 25.");
+            return;
+        }
+
+        // Créer la zone
+        Zone zone = Zone.creerZone(nom, nbRangees, nbNumeros);
+        if (zone == null) {
+            afficherMessage("Erreur Création", "Échec de la création de la zone. Vérifiez les valeurs saisies.");
+        } else {
+            DataBase.ajouterZone(zone); // Ajouter la zone à la base de données
+            afficherMessage("Succès", "Zone créée avec succès.");
+            
+            System.out.println("Zone créée :");
+            System.out.println("Nom : " + zone.getNom());
+            System.out.println("Nombre de lignes : " + nbRangees);
+            System.out.println("Nombre de colonnes : " + nbNumeros);
+            zone.listerFauteuils();
+            
+           
+            Main.fermerCreation();
+        }
     }
 
+    private void afficherMessage(String titre, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titre);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

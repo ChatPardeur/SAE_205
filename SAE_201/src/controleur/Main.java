@@ -9,6 +9,7 @@ import vue.FenAccueil;
 import vue.FenCreationZone;
 import vue.FenGestionZone;
 import vue.FenListe;
+import vue.CtrlGestionZone;
 
 public class Main extends Application{
 	static private FenAccueil fnAccueil;
@@ -32,13 +33,25 @@ public class Main extends Application{
 	
 	public static void fermerAccueil()
 	{
-		fnAccueil.close();
+		System.exit(0);
 	}
 	
 	public static void ouvrirListe() throws IOException
 	{
 		fnListe = new FenListe();
 		fnListe.show();
+	}
+
+	public static void ouvrirZones() throws IOException
+	{
+		fnGestionZone = new FenGestionZone();
+		fnGestionZone.show();
+	}
+	
+	public static void ouvrirCreationZone() throws IOException
+	{
+		fnCreationZone = new FenCreationZone();
+		fnCreationZone.show();
 	}
 	
 
