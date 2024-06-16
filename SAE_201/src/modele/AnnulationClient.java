@@ -13,6 +13,14 @@ public class AnnulationClient extends Annulation
         super(date, remboursementEffectue, reservation);
     }
     
+    @Override
+    public Date getDate() {
+    	// TODO Auto-generated method stub
+    	return super.getDate();
+    }
+    
+    
+    
     public ArrayList<String> detail()
     {
     	String nomClient = getReservation().getClient().getNom();

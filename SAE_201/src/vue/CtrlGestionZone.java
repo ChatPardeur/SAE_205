@@ -1,5 +1,8 @@
 package vue;
 
+import java.io.IOException;
+
+import controleur.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,13 +20,13 @@ public class CtrlGestionZone {
     private TableView<?> listeZones;
 
     @FXML
-    void clickCreerZone(ActionEvent event) {
-
+    void clickCreerZone(ActionEvent event) throws IOException {
+    	Main.ouvrirCreationZone();
     }
 
     @FXML
     void clickQuitter(ActionEvent event) {
-
+    	Main.fermerGestionZone();
     }
 
 }

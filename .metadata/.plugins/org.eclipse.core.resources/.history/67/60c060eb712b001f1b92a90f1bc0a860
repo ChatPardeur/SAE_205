@@ -1,0 +1,17 @@
+package modele;
+
+public class RerservationAnnulee {
+	private String nomClient;
+	private String numClient;
+	private String nomSpectacle;
+	private String dateheure;
+	private String dateAnnulation;
+	private String nbBilletsVendus;
+	private String nbBilletsRetournes;
+	private String totalRemboursement;
+	
+	public RerservationAnnulee(AnnulationClient annulation) 
+	{
+		
+	}
+}

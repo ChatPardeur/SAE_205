@@ -19,8 +19,8 @@ public class CtrlAccueil {
     private Button bnQuitter;
 
     @FXML
-    void clickCreationZone(ActionEvent event) {
-
+    void clickCreationZone(ActionEvent event) throws IOException {
+    	Main.ouvrirGestionZone();
     }
     
     @FXML

@@ -1,0 +1,37 @@
+package vue;
+
+import java.io.IOException;
+
+import controleur.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class CtrlAccueil {
+
+    @FXML
+    private Button bnCreaZone;
+
+    @FXML
+    private Button bnListeReservAnnule;
+
+    @FXML
+    private Button bnQuitter;
+
+    @FXML
+    void clickCreationZone(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void clickListe(ActionEvent event) throws IOException {
+    	Main.ouvrirListe();
+    }
+
+    @FXML
+    void fermer(ActionEvent event) 
+    {
+    	Main.fermerAccueil();
+    }
+
+}

@@ -1,0 +1,43 @@
+package vue;
+
+import controleur.Main;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modele.AnnulationClient;
+
+public class CtrlListeAnnule {
+
+    @FXML
+    private Button bnQuitter;
+
+    @FXML
+    private ComboBox<?> bnTrier;
+
+    @FXML
+    private TableView<?> tableViewAnnule;
+
+    @FXML
+    private TextField txt_Filtrer;
+
+    @FXML
+    void clickQuitter(ActionEvent event) {
+    	Main.fermerListe();
+    }
+
+    
+    
+    private void Initialize() 
+    {
+    	tableViewAnnule = new TableView<AnnulationClient>();
+    	
+    	TableColumn<AnnulationClient, String> c1 = new TableColumn<AnnulationClient, String>("Nom client");
+    	c1.setCellValueFactory((new PropertyValueFactory<AnnulationClient, String>("nom client"));
+	}
+}

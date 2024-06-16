@@ -30,26 +30,43 @@ public class Main extends Application{
 		Application.launch(args);
 	}
 	
+	public static void fermerAccueil()
+	{
+		fnAccueil.close();
+	}
+	
 	public static void ouvrirListe() throws IOException
 	{
 		fnListe = new FenListe();
 		fnListe.show();
 	}
 	
-	public static void fermerAccueil()
-	{
-		fnAccueil.close();
-	}
 
 	public static void fermerListe()
 	{
 		fnListe.close();
 	}
 	
-	
-	
-	public void chargerRerservationsAnnulees()
+	public static void ouvrirGestionZone() throws IOException
 	{
-		
+		fnGestionZone = new FenGestionZone();
+		fnGestionZone.show();
 	}
+	
+	public static void fermerGestionZone()
+	{
+		fnGestionZone.close();
+	}
+	
+	public static void ouvrirCreationZone() throws IOException
+	{
+		fnCreationZone = new FenCreationZone();
+		fnCreationZone.show();
+	}
+	
+	public static void fermerCreationZone()
+	{
+		fnCreationZone.close();
+	}
+	
 }

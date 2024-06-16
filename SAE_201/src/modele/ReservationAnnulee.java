@@ -1,0 +1,49 @@
+package modele;
+
+import java.util.Iterator;
+
+public class ReservationAnnulee {
+	private String nomClient;
+	private String numClient;
+	private String nomSpectacle;
+	private String dateHeure;
+	private String dateAnnulation;
+	private String nbBilletsVendus;
+	private String nbBilletsRetournes;
+	private String totalRemboursement;
+	
+	public ReservationAnnulee(AnnulationClient annulation) 
+	{
+		nomClient = annulation.getReservation().getClient().getNom();
+    	numClient = annulation.getReservation().getClient().getNumero();
+    	nomSpectacle = annulation.getReservation().getRepresentation().getSpectacle().getNom();
+    	dateHeure = annulation.getReservation().getRepresentation().getJour() + " " + annulation.getReservation().getRepresentation().getHeure();
+    	dateAnnulation = annulation.getDate().toString();
+    	nbBilletsVendus = Integer.toString(annulation.getReservation().getBillets().size());
+
+    	
+    	if(annulation.getRemboursementEffectue())
+    	{
+    		nbBilletsRetournes = nbBilletsVendus;
+    		
+    		double total = 0;
+    		
+    		double tarifBase = annulation.getReservation().getRepresentation().getSpectacle().getTarif().getPleinTarif();
+    		
+    		Iterator<Billet> it = annulation.getReservation().getBillets().iterator();
+    		Billet b;
+    		while(it.hasNext())
+    		{
+    			b = it.next();
+    			total += b.getTarification().calculReduc(tarifBase);
+    		}
+    		
+    		totalRemboursement = Double.toString(total);
+    	}
+    	else
+    	{
+    		nbBilletsRetournes = "0";
+    		totalRemboursement = "0";
+    	}
+	}
+}
