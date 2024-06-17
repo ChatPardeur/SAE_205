@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class FenGestionZone extends Stage {
 	
+	public static CtrlGestionZone ctrl;
+	
 	public FenGestionZone() throws IOException 
 	{
 		this.setTitle("Le Patio - Gestion des zones");
@@ -20,8 +22,12 @@ public class FenGestionZone extends Stage {
      	FXMLLoader loader = new FXMLLoader();
      	loader.setLocation(getClass().getResource("GestionSalle.fxml"));
      	Pane root = loader.load();
-     	loader.getController();
+     	ctrl=loader.getController();
      	return root;
      	
+	}
+	
+	public void actualiserTable() {
+		ctrl.actualiserTableView();
 	}
 }

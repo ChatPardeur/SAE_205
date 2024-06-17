@@ -74,6 +74,7 @@ public class Main extends Application{
 	
 	public static void fermerCreationZone()
 	{
+		fnGestionZone.actualiserTable();
 		fnCreationZone.close();
 	}
 	
