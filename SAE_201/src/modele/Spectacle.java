@@ -11,13 +11,12 @@ public class Spectacle
     private Tarif tarif;
 
 
-    public Spectacle(String nom, int duree, int nbreMaxSpect, String genre, Tarif tarif)
+    public Spectacle(String nom, int duree, int nbreMaxSpect, String genre)
     {
         this.nom = nom;
         this.duree = duree;
         this.nbreMaxSpect = nbreMaxSpect;
         this.genre = genre;
-        this.tarif = tarif;
     }
 
 

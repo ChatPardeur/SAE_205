@@ -1,0 +1,94 @@
+package modele;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Locale;
+
+import javafx.collections.ArrayChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class DataBase {
+	static public ObservableList<ReservationAnnulee> annulations = FXCollections.observableArrayList();
+	static public ObservableList<Zone> zones = FXCollections.observableArrayList();
+	
+	
+	static public void chargerReservationsAnnulees() throws ParseException
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+		
+		AnnulationClient a1 = new AnnulationClient(formatter.parse("19-Nov-2009"), true, 
+									new Reservation(formatter.parse("17-Nov-2009"), formatter.parse("17-Nov-2009"),
+											new Client("Flantier", "Noël", "ici", "0102030405", "mail117@aol.com", "012")));
+		ReservationAnnulee r1 = new ReservationAnnulee(a1);
+		
+		/*AnnulationClient a2 = new AnnulationClient(formatter.parse("25-Jun-2015"), true, 
+									new Reservation(formatter.parse("14-Jun-2015"), formatter.parse("14-Jun-2015"),
+											new Client("Bramard", "Lucien", "là", "0102030405", "mail117bis@gmail.com", "123")));
+		ReservationAnnulee r2 = new ReservationAnnulee(a2);
+
+		AnnulationClient a3 = new AnnulationClient(formatter.parse("01-Oct-2023"), true, 
+				new Reservation(formatter.parse("31-Sep-2023"), formatter.parse("31-Sep-2023"),
+						new Client("Faubourd", "Gertrude", "rue", "0203040506", "GertrudeF@gmail.com", "096")));
+		ReservationAnnulee r3 = new ReservationAnnulee(a3);
+		
+		AnnulationClient a4 = new AnnulationClient(formatter.parse("04-May-2020"), true, 
+				new Reservation(formatter.parse("04-May-2020"), formatter.parse("04-May-2020"),
+						new Client("Castille", "Claude", "avenue", "0506070809", "cc@orange.com", "452")));
+		ReservationAnnulee r4 = new ReservationAnnulee(a4);*/
+		
+		
+		annulations.add(r1);
+		/*annulations.add(r2);
+		annulations.add(r3);
+		annulations.add(r4);*/
+	}
+	
+	public static void main(String[] args) throws ParseException {
+		chargerReservationsAnnulees();
+	}
+	
+	
+
+
+
+	public static ObservableList<ReservationAnnulee> getAnnulations() {
+		return annulations;
+	}
+
+
+
+
+
+	public static ArrayList<ReservationAnnulee> getAnnulations_ar() 
+	{
+		ArrayList<ReservationAnnulee> temp = new ArrayList<ReservationAnnulee>();
+		
+		Iterator<ReservationAnnulee> it = annulations.iterator();
+		
+		while(it.hasNext())
+		{
+			temp.add(it.next());
+		}
+
+		return temp;
+	}
+
+
+	static public void ajouterZone(Zone zone) 
+	{
+	        zones.add(zone);
+	}
+	public static boolean zoneExiste(String nom) 
+	{
+	    for (Zone zone : zones) {
+	        if (zone.getNom().equalsIgnoreCase(nom)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
+}

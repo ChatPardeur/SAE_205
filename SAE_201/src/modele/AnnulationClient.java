@@ -68,4 +68,10 @@ public class AnnulationClient extends Annulation
     	
     	return liste;
     }
+    
+    @Override
+    public Reservation getReservation() {
+    	// TODO Auto-generated method stub
+    	return super.getReservation();
+    }
 }

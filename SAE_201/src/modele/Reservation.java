@@ -25,6 +25,8 @@ public class Reservation
         this.dateEnvoiConf = dateEnvoiConf;
 
         this.client = c;
+        this.billets = new ArrayList<Billet>();
+
     }
 
     public String getNumero() {

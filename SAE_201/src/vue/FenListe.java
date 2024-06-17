@@ -24,4 +24,8 @@ public class FenListe extends Stage{
      	return root;
      	
 	}
+	
+	public void init()
+	{
+	}
 }
