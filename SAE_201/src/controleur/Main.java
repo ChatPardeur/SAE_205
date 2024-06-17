@@ -22,7 +22,6 @@ public class Main extends Application{
 	@Override
 	public void start(Stage arg0) throws Exception
 	{
-		DataBase.chargerReservationsAnnulees();
 		fnAccueil = new FenAccueil();
 		fnAccueil.show();
 	}

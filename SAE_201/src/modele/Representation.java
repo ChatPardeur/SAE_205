@@ -44,6 +44,11 @@ public class Representation
         this.spectacle = spectacle;
     }
 
+    
+    public String getDateHeure()
+    {
+    	return jour + " " + heure;
+    }
     public boolean contientRes(Reservation r)
     {
         return reservations.contains(r);

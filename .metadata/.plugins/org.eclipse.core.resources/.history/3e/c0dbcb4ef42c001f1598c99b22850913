@@ -1,0 +1,89 @@
+package vue;
+
+import java.text.ParseException;
+
+import controleur.Main;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modele.DataBase;
+import modele.ReservationAnnulee;
+
+public class CtrlListeAnnule {
+
+    @FXML
+    private Button bnQuitter;
+
+    @FXML
+    private ComboBox<?> bnTrier;
+
+    @FXML
+    private TableView<ReservationAnnulee> tableViewAnnule;
+
+    @FXML
+    private TextField txt_Filtrer;
+
+    @FXML
+    void clickQuitter(ActionEvent event) {
+    	Main.fermerListe();
+    }
+
+    @FXML
+    void clickTrier(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rechercher(ActionEvent event) {
+
+    }
+    
+    @FXML private void initialize() throws ParseException
+    {
+    	TableColumn<ReservationAnnulee,String> c1 = new TableColumn<ReservationAnnulee,String>("Nom client");
+        c1.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("nomClient"));	
+        tableViewAnnule.getColumns().add(c1);
+        TableColumn<ReservationAnnulee,String> c2 = new TableColumn<ReservationAnnulee,String>("N° client");
+        c2.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("numClient"));	
+        tableViewAnnule.getColumns().add(c2);
+        TableColumn<ReservationAnnulee,String> c3 = new TableColumn<ReservationAnnulee,String>("Nom spectacle");
+        c3.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("nomSpectacle"));	
+        tableViewAnnule.getColumns().add(c3);
+        TableColumn<ReservationAnnulee,String> c4 = new TableColumn<ReservationAnnulee,String>("Date et heure");
+        c4.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("dateHeure"));	
+        tableViewAnnule.getColumns().add(c4);
+        TableColumn<ReservationAnnulee,String> c5 = new TableColumn<ReservationAnnulee,String>("Date d'annulation");
+        c5.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("dateAnnulation"));	
+        tableViewAnnule.getColumns().add(c5);
+        TableColumn<ReservationAnnulee,String> c6 = new TableColumn<ReservationAnnulee,String>("Billets vendus");
+        c6.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("nbBilletsVendus"));	
+        tableViewAnnule.getColumns().add(c6);
+        TableColumn<ReservationAnnulee,String> c7 = new TableColumn<ReservationAnnulee,String>("Billets retournés");
+        c6.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("nbBilletsRetournes"));	
+        tableViewAnnule.getColumns().add(c7);
+        TableColumn<ReservationAnnulee,String> c8 = new TableColumn<ReservationAnnulee,String>("Total remboursement");
+        c6.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("totalRemboursement"));	
+        tableViewAnnule.getColumns().add(c8);
+
+        DataBase.chargerReservationsAnnulees();
+        tableViewAnnule.setItems(DataBase.getAnnulations());
+        
+        ObservableList<ReservationAnnulee> test = tableViewAnnule.getItems();
+        
+        
+	}	
+    
+
+}
+
+    
+
+

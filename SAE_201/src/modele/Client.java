@@ -13,7 +13,6 @@ public class Client
 
     private ArrayList<Reservation> reservations;
 
-    private static String nbNumero = "0";
 
     public Client(String nom, String prenom, String adresse, String tel, String mail, String numero)
     {
@@ -22,9 +21,7 @@ public class Client
         this.adresse = adresse;
         this.tel = tel;
         this.mail = mail;
-        this.numero = nbNumero;
-
-        nbNumero =Integer.toString (Integer.parseInt(nbNumero) + 1);
+        this.numero = numero;
     }
 
     public String getNom() {
@@ -67,7 +64,7 @@ public class Client
         this.mail = mail;
     }
 
-    public String getNumero() {
+    public String getNum() {
         return numero;
     }
 

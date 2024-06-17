@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DataBase {
-	static public ObservableList<ReservationAnnulee> annulations = FXCollections.observableArrayList();
+	static private ObservableList<ReservationAnnulee> annulations = FXCollections.observableArrayList();
 	static public ObservableList<Zone> zones = FXCollections.observableArrayList();
 	
 	
@@ -67,39 +67,13 @@ public class DataBase {
 		annulations.add(r2);
 		annulations.add(r3);
 		annulations.add(r4);
-	}
-	
-	public static void main(String[] args) throws ParseException {
 		
-		chargerReservationsAnnulees();
-	
 	}
-	
-	
-
-
 
 	public static ObservableList<ReservationAnnulee> getAnnulations() {
 		return annulations;
 	}
 
-
-
-
-
-	public static ArrayList<ReservationAnnulee> getAnnulations_ar() 
-	{
-		ArrayList<ReservationAnnulee> temp = new ArrayList<ReservationAnnulee>();
-		
-		Iterator<ReservationAnnulee> it = annulations.iterator();
-		
-		while(it.hasNext())
-		{
-			temp.add(it.next());
-		}
-
-		return temp;
-	}
 
 
 	static public void ajouterZone(Zone zone) 

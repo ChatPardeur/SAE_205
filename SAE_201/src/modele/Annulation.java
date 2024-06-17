@@ -17,7 +17,7 @@ abstract class Annulation
         this.reservation = reservation;
     }
 
-    public Date getDate() {
+    public Date getDateAnnulation() {
         return date;
     }
 

@@ -115,4 +115,9 @@ public class Reservation
             return "erreur : billet non trouvé";
         }
     }
+
+	public String getNbBilletsVendus() {
+		// TODO Auto-generated method stub
+		return Integer.toString(billets.size());
+	}
 }

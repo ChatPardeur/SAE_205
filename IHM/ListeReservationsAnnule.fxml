@@ -44,7 +44,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.CtrlListeAnnule">
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.CtrlListeAnnule">
    <children>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -64,7 +64,7 @@
                   </TableView>
                </content>
             </ScrollPane>
-            <TextField fx:id="txt_Filtrer" layoutX="10.0" layoutY="25.0" onAction="#rechercher" prefHeight="26.0" prefWidth="401.0" />
+            <TextField fx:id="txt_Filtrer" layoutX="10.0" layoutY="25.0" onKeyReleased="#recherche" prefHeight="26.0" prefWidth="401.0" />
             <ComboBox fx:id="bnTrier" layoutX="580.0" layoutY="25.0" onAction="#clickTrier" prefWidth="150.0" promptText="Trier" />
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="388.0" layoutY="25.0">
                <image>

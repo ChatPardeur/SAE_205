@@ -1,0 +1,55 @@
+package modele;
+
+public class ReservationAnnulee {
+    private String nomClient;
+    private String numClient;
+    private String nomSpectacle;
+    private String dateHeure;
+    private String dateAnnulation;
+    private String nbBilletsVendus;
+    private String nbBilletsRetournes;
+    private String totalRemboursement;
+
+    public ReservationAnnulee(AnnulationClient annulation) {
+        this.nomClient = annulation.getReservation().getClient().getNom();
+        this.numClient = annulation.getReservation().getClient().getNum();
+        this.nomSpectacle = annulation.getReservation().getRepresentation().getSpectacle().getNom();
+        this.dateHeure = annulation.getReservation().getRepresentation().getDateHeure();
+        this.dateAnnulation = annulation.getDate().toString();
+        this.nbBilletsVendus = String.valueOf(annulation.getReservation().getNbBilletsVendus());
+        this.nbBilletsRetournes = String.valueOf(annulation.getNbBilletsRetournes());
+        this.totalRemboursement = String.valueOf(annulation.getTotalRemboursement());
+    }
+
+    public String getNomClient() {
+        return nomClient;
+    }
+
+    public String getNumClient() {
+        return numClient;
+    }
+
+    public String getNomSpectacle() {
+        return nomSpectacle;
+    }
+
+    public String getDateHeure() {
+        return dateHeure;
+    }
+
+    public String getDateAnnulation() {
+        return dateAnnulation;
+    }
+
+    public String getNbBilletsVendus() {
+        return nbBilletsVendus;
+    }
+
+    public String getNbBilletsRetournes() {
+        return nbBilletsRetournes;
+    }
+
+    public String getTotalRemboursement() {
+        return totalRemboursement;
+    }
+}
