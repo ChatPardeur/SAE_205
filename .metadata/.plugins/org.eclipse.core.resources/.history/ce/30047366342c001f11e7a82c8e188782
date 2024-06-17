@@ -97,7 +97,7 @@ public class CtrlCreationZone {
             zone.listerFauteuils();
             
            
-            Main.fermerCreationZone();
+            Main.fermerCreation();
         }
     }
 

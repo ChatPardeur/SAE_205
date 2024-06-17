@@ -6,4 +6,6 @@
     <fullyQualifiedTypeName name="donnees.Zone"/>
     <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="donnees.Fauteuil"/>
+    <fullyQualifiedTypeName name="modele.ReservationAnnulee"/>
+    <fullyQualifiedTypeName name="controleur.Main"/>
 </qualifiedTypeNameHistroy>

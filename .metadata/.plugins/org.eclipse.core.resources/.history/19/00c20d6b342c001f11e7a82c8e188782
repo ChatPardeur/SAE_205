@@ -45,7 +45,7 @@ public class CtrlGestionZone {
 
     @FXML
     void clickQuitter(ActionEvent event) {
-        Main.fermerGestionZone();
+        Main.fermerGestion();
     }
     
     private void chargerDonnees() {
@@ -70,8 +70,7 @@ public class CtrlGestionZone {
         chargerDonnees();
     }
 
-    public void actualiserTableView() 
-    {
+    public void actualiserTableView() {
         chargerDonnees();
     }
 }

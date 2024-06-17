@@ -30,7 +30,7 @@ public class CtrlCreationZone {
 
     @FXML
     void clickAnnuler(ActionEvent event) {
-        Main.fermerCreationZone();
+        Main.fermerCreation();
     }
 
     @FXML
@@ -97,7 +97,7 @@ public class CtrlCreationZone {
             zone.listerFauteuils();
             
            
-            Main.fermerCreationZone();
+            Main.fermerCreation();
         }
     }
 

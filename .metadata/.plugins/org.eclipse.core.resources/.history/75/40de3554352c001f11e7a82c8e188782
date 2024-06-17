@@ -70,8 +70,7 @@ public class CtrlGestionZone {
         chargerDonnees();
     }
 
-    public void actualiserTableView() 
-    {
+    public void actualiserTableView() {
         chargerDonnees();
     }
 }

@@ -1,6 +1,5 @@
 package vue;
 
-import controleur.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,7 +26,7 @@ public class CtrlListeAnnule {
 
     @FXML
     void clickQuitter(ActionEvent event) {
-    	Main.fermerListe();
+
     }
 
     @FXML
@@ -57,7 +56,8 @@ public class CtrlListeAnnule {
         TableColumn<ReservationAnnulee,String> c5 = new TableColumn<ReservationAnnulee,String>("Date d'annulation");
         c5.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("Date d'annulation"));	
         tableViewAnnule.getColumns().set(1, c5);
-	}	
+	}
+
 }
 
     

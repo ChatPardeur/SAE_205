@@ -71,6 +71,11 @@ public class Main extends Application{
 		fnGestionZone.close();
 	}
 	
+	public static void ouvrirCreationZone() throws IOException
+	{
+		fnCreationZone = new FenCreationZone();
+		fnCreationZone.show();
+	}
 	
 	public static void fermerCreationZone()
 	{

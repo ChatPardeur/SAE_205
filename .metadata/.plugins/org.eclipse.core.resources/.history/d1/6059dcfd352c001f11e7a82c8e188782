@@ -1,15 +1,11 @@
 package vue;
 
-import controleur.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import modele.ReservationAnnulee;
 
 public class CtrlListeAnnule {
 
@@ -20,14 +16,14 @@ public class CtrlListeAnnule {
     private ComboBox<?> bnTrier;
 
     @FXML
-    private TableView<ReservationAnnulee> tableViewAnnule;
+    private TableView<?> tableViewAnnule;
 
     @FXML
     private TextField txt_Filtrer;
 
     @FXML
     void clickQuitter(ActionEvent event) {
-    	Main.fermerListe();
+
     }
 
     @FXML
@@ -57,7 +53,8 @@ public class CtrlListeAnnule {
         TableColumn<ReservationAnnulee,String> c5 = new TableColumn<ReservationAnnulee,String>("Date d'annulation");
         c5.setCellValueFactory(new PropertyValueFactory<ReservationAnnulee,String>("Date d'annulation"));	
         tableViewAnnule.getColumns().set(1, c5);
-	}	
+	}
+
 }
 
     
