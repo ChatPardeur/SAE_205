@@ -2,12 +2,14 @@ package modele;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class ReservationAnnulee {
     private String nomClient;
     private String numClient;
     private String nomSpectacle;
+    private String dateRepresentation;
     private String dateHeure;
     private String dateAnnulation;
     private String nbBilletsVendus;
@@ -15,11 +17,14 @@ public class ReservationAnnulee {
     private String totalRemboursement;
 
     public ReservationAnnulee(AnnulationClient annulation) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+
         this.nomClient = annulation.getReservation().getClient().getNom();
         this.numClient = annulation.getReservation().getClient().getNum();
         this.nomSpectacle = annulation.getReservation().getRepresentation().getSpectacle().getNom();
+        this.dateRepresentation = formatter.format(annulation.getReservation().getRepresentation().getJour());
         this.dateHeure = annulation.getReservation().getRepresentation().getDateHeure();
-        this.dateAnnulation = annulation.getDateAnnulation().toString();
+        this.dateAnnulation = formatter.format(annulation.getDateAnnulation());
         this.nbBilletsVendus = String.valueOf(annulation.getReservation().getNbBilletsVendus());
         this.nbBilletsRetournes = String.valueOf(annulation.getNbBilletsRetournes());
         this.totalRemboursement = String.valueOf(annulation.getTotalRemboursement());
@@ -56,6 +61,14 @@ public class ReservationAnnulee {
     public String getTotalRemboursement() {
         return totalRemboursement;
     }
+    
+	public String getDateRepresentation() {
+		return dateRepresentation;
+	}
+
+	public void setDateRepresentation(String dateRepresentation) {
+		this.dateRepresentation = dateRepresentation;
+	}
 
 	@Override
 	public String toString() {
@@ -95,12 +108,14 @@ public class ReservationAnnulee {
 				
 	}
 	
+
+	
 	public static void main(String[] args) throws ParseException 
 	{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 		Client c1 = new Client("Flantier", "Noël", "ici", "0102030405", "mail117@aol.com", "012");
 		Spectacle s = new Spectacle("spectacle_test", 100, 100, "concert");
-		Representation r = new Representation("lundi", "20h", true, s);
+		Representation r = new Representation(formatter.parse("30-Nov-2010"), "20h", true, s);
 		
 		
 		AnnulationClient a1 = new AnnulationClient(formatter.parse("19-Nov-2009"), true, 

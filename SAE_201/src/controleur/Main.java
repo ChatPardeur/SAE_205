@@ -26,7 +26,8 @@ public class Main extends Application{
 		fnAccueil.show();
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		Application.launch(args);
 	}
 	

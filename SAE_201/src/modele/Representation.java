@@ -1,16 +1,18 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Representation
 {
-    private String jour;
+    private Date jour;
     private String heure;
     private boolean annee;
     private Spectacle spectacle;
     private ArrayList<Reservation> reservations;
 
-    public Representation(String jour, String heure, boolean annee, Spectacle spectacle) {
+    public Representation(Date jour, String heure, boolean annee, Spectacle spectacle) 
+    {
         this.jour = jour;
         this.heure = heure;
         this.annee = annee;
@@ -19,10 +21,10 @@ public class Representation
         this.reservations = new ArrayList<>();
     }
 
-    public String getJour() {
+    public Date getJour() {
         return jour;
     }
-    public void setJour(String jour) {
+    public void setJour(Date jour) {
         this.jour = jour;
     }
     public String getHeure() {

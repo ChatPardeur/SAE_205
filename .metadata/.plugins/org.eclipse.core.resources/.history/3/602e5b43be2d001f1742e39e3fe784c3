@@ -1,0 +1,95 @@
+package modele;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Locale;
+
+import javafx.collections.ArrayChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class DataBase {
+	static private ObservableList<ReservationAnnulee> reservationsAnnulees = FXCollections.observableArrayList();
+	static public ObservableList<Zone> zones = FXCollections.observableArrayList();
+	
+	
+	static public void chargerReservationsAnnulees() throws ParseException
+	{
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+		
+		Zone z = new Zone("balcon");
+		
+		Client c1 = new Client("Flantier", "Noël", "ici", "0102030405", "mail117@aol.com", "012");
+		Client c2 = new Client("Bramard", "Lucien", "là", "0102030405", "mail117bis@gmail.com", "123");
+		Client c3 = new Client("Faubourd", "Gertrude", "rue", "0203040506", "GertrudeF@gmail.com", "096");
+		Client c4 = new Client("Castille", "Claude", "avenue", "0506070809", "cc@orange.com", "452");
+		Spectacle s1 = new Spectacle("ABBA", 100, 100, "concert");
+		Spectacle s2 = new Spectacle("Hamlet", 200, 200, "pièce de théâtre");
+		Representation rep1 = new Representation(formatter.parse("14-Nov-2010"), "20h", true, s1);
+		Representation rep2 = new Representation(formatter.parse("04-Oct-2022"), "17h", true, s2);
+
+		
+		AnnulationClient a1 = new AnnulationClient(formatter.parse("19-Nov-2009"), true, 
+									new Reservation(formatter.parse("17-Nov-2009"), formatter.parse("17-Nov-2009"), c1));
+		a1.getReservation().setRepresentation(rep1);
+		a1.getReservation().getRepresentation().setSpectacle(s1);
+		a1.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s1, z , 10));
+		a1.setRemboursementEffectue(true);
+		ReservationAnnulee r1 = new ReservationAnnulee(a1);
+		
+		AnnulationClient a2 = new AnnulationClient(formatter.parse("25-Jun-2015"), true, 
+									new Reservation(formatter.parse("14-Jun-2015"), formatter.parse("14-Jun-2015"), c2));
+		a2.getReservation().setRepresentation(rep2);
+		a2.getReservation().getRepresentation().setSpectacle(s2);
+		a2.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s2, z , 12));
+		a2.setRemboursementEffectue(false);
+		ReservationAnnulee r2 = new ReservationAnnulee(a2);
+		
+		
+		AnnulationClient a3 = new AnnulationClient(formatter.parse("01-Oct-2023"), true, 
+				new Reservation(formatter.parse("31-Sep-2023"), formatter.parse("31-Sep-2023"), c3));
+		a3.getReservation().setRepresentation(rep1);
+		a3.getReservation().getRepresentation().setSpectacle(s1);
+		a3.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s1, z , 15));
+		a3.setRemboursementEffectue(false);
+		ReservationAnnulee r3 = new ReservationAnnulee(a3);
+		
+		
+		AnnulationClient a4 = new AnnulationClient(formatter.parse("04-May-2020"), true, 
+				new Reservation(formatter.parse("04-May-2020"), formatter.parse("04-May-2020"), c4));
+		a4.getReservation().setRepresentation(rep2);
+		a4.getReservation().getRepresentation().setSpectacle(s2);
+		a4.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s2, z , 15));
+		a4.setRemboursementEffectue(false);
+		ReservationAnnulee r4 = new ReservationAnnulee(a4);
+		
+		reservationsAnnulees.add(r1);
+		reservationsAnnulees.add(r2);
+		reservationsAnnulees.add(r3);
+		reservationsAnnulees.add(r4);
+		
+	}
+
+	public static ObservableList<ReservationAnnulee> getAnnulations() {
+		return ReservationsAnnulees;
+	}
+
+
+
+	static public void ajouterZone(Zone zone) 
+	{
+	        zones.add(zone);
+	}
+	public static boolean zoneExiste(String nom) 
+	{
+	    for (Zone zone : zones) {
+	        if (zone.getNom().equalsIgnoreCase(nom)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
+}

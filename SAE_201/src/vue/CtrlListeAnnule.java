@@ -1,13 +1,18 @@
 package vue;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
 import controleur.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -16,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import modele.AnnulationClient;
 import modele.DataBase;
 import modele.ReservationAnnulee;
 
@@ -25,10 +31,13 @@ public class CtrlListeAnnule {
     private Button bnQuitter;
 
     @FXML
-    private ComboBox<?> bnTrier;
+    private ComboBox<String> bnTrier;
 
     @FXML
     private TableView<ReservationAnnulee> tableViewAnnule;
+    
+    ObservableList<String> optionsTri = FXCollections.observableArrayList();
+    
 
     @FXML
     private TextField txt_Filtrer;
@@ -39,13 +48,186 @@ public class CtrlListeAnnule {
     }
 
     @FXML
-    void clickTrier(ActionEvent event) {
+    void clickTrier(ActionEvent event) throws ParseException 
+    {
+		tableViewAnnule.getItems().clear();
 
+    	String input = bnTrier.getSelectionModel().getSelectedItem();
+    	if(input.equals("Date d'annulation") || input.equals("Date de représentation"))
+    	{
+    		trieDate(input);
+    	}
+    	else if(input.equals("Nom du spectacle"))
+    	{
+    		trieNom();
+    	}
+    	else if(input.equals("Numéro de client"))
+    	{
+    		trieNum();
+    	}
+    	
+    	if(!txt_Filtrer.getText().isEmpty())
+    	{
+    		    	filtrerListe(txt_Filtrer.getText());
+
+    	}
     }
     
-    private void filtrerListe(String texte)
+    
+    
+    public static int compareNoms(String s1, String s2) //renvoie un entier négatif si s1 vient avant s2 dans l'ordre alphabéthique
     {
-    	ObservableList<ReservationAnnulee> listeFiltree = FXCollections.observableArrayList();
+    	return s1.compareTo(s2);
+    }
+    
+    public void trieNom() throws ParseException
+    {
+		DataBase.chargerReservationsAnnulees();
+    	ObservableList<ReservationAnnulee> liste_initiale = DataBase.getAnnulations();
+    	ObservableList<ReservationAnnulee> listeTriee = FXCollections.observableArrayList();
+    	
+
+		while(!liste_initiale.isEmpty())
+		{
+			ReservationAnnulee resPremiere= resPremierAlphabet(liste_initiale);
+			
+			liste_initiale.remove(resPremiere);
+			listeTriee.add(resPremiere);
+		}
+		tableViewAnnule.getItems().clear();
+		tableViewAnnule.setItems(listeTriee);
+    }
+    
+    public ReservationAnnulee resPremierAlphabet(ObservableList<ReservationAnnulee> annulations)
+    {
+    	Iterator<ReservationAnnulee> it = annulations.iterator();
+    	ReservationAnnulee resPremiere = it.next();
+    	
+    	while(it.hasNext())
+    	{
+    		ReservationAnnulee resActuelle = it.next();
+    		if(compareNoms(resPremiere.getNomSpectacle(), resActuelle.getNomSpectacle()) > 1)
+    		{
+    			resPremiere = resActuelle;
+    		}
+    	}
+    	
+    	return resPremiere;
+    }
+    
+    
+    
+    public static Integer compareDates(String d1, String d2) throws ParseException		//renvoie un entier positif si d1 > d2
+    {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+		
+		Date date1 = formatter.parse(d1);
+		Date date2 = formatter.parse(d2);
+		
+
+    	return date1.compareTo(date2);
+    }
+    
+    public ReservationAnnulee reservationPlusAncienne(ObservableList<ReservationAnnulee> annulations, String quelleDate) throws ParseException		//renvoie la réservation la plus ancienne
+    {
+    	
+    	Iterator<ReservationAnnulee> it = annulations.iterator();
+    	ReservationAnnulee resPlusAncienne = it.next();
+    	
+    	if(quelleDate.equals("Date d'annulation"))
+		{
+    		while(it.hasNext())
+        	{
+        		ReservationAnnulee resActuelle = it.next();
+        		
+
+        		if(compareDates(resPlusAncienne.getDateAnnulation(), resActuelle.getDateAnnulation()) < 0)
+        		{
+        			resPlusAncienne = resActuelle;
+        		}
+        	}
+		}
+    	else if (quelleDate.equals("Date de représentation")) 
+    	{
+        	while(it.hasNext())
+        	{
+        		ReservationAnnulee resActuelle = it.next();
+        		
+
+        		if(compareDates(resPlusAncienne.getDateRepresentation(), resActuelle.getDateRepresentation()) < 0)
+        		{
+        			resPlusAncienne = resActuelle;
+        		}
+        	}
+		}
+    	else
+    	{
+    		System.out.println("erreur : input non valide");
+    		return null;
+    	}
+
+    	return resPlusAncienne;
+    }
+    
+    public void trieDate(String input) throws ParseException
+    {
+		DataBase.chargerReservationsAnnulees();
+    	ObservableList<ReservationAnnulee> liste_initiale = DataBase.getAnnulations();
+    	ObservableList<ReservationAnnulee> listeTriee = FXCollections.observableArrayList();
+    	
+
+		while(!liste_initiale.isEmpty())
+		{
+			ReservationAnnulee resPlusAncienne = reservationPlusAncienne(liste_initiale, input);
+			
+			liste_initiale.remove(resPlusAncienne);
+			listeTriee.add(resPlusAncienne);
+		}
+		tableViewAnnule.getItems().clear();
+		tableViewAnnule.setItems(listeTriee);
+    }
+    
+    public ReservationAnnulee plusPetitNumClient(ObservableList<ReservationAnnulee> annulations)
+    {
+    	Iterator<ReservationAnnulee> it = annulations.iterator();
+    	ReservationAnnulee resPlusPetitNum = it.next();
+    	
+    	while(it.hasNext())
+    	{
+    		ReservationAnnulee resActuelle = it.next();
+    		if(Integer.parseInt(resPlusPetitNum.getNumClient()) > Integer.parseInt(resActuelle.getNumClient()))
+    		{
+    			resPlusPetitNum = resActuelle;
+    		}
+    	}
+    	
+    	return resPlusPetitNum;
+    }
+    
+    public void trieNum() throws ParseException
+    {
+		DataBase.chargerReservationsAnnulees();
+    	ObservableList<ReservationAnnulee> liste_initiale = DataBase.getAnnulations();
+    	ObservableList<ReservationAnnulee> listeTriee = FXCollections.observableArrayList();
+    	
+
+		while(!liste_initiale.isEmpty())
+		{
+			ReservationAnnulee resPlusPetitNum = plusPetitNumClient(liste_initiale);
+			
+			liste_initiale.remove(resPlusPetitNum);
+			listeTriee.add(resPlusPetitNum);
+		}
+		tableViewAnnule.getItems().clear();
+		tableViewAnnule.setItems(listeTriee);
+    }
+    
+    
+    private void filtrerListe(String texte) throws ParseException
+    {
+    	System.out.println("cc");
+		ObservableList<ReservationAnnulee> listeFiltree = FXCollections.observableArrayList();
+		DataBase.chargerReservationsAnnulees();
     	ObservableList<ReservationAnnulee> listeAnnulations = DataBase.getAnnulations();
     	ReservationAnnulee resAn;
     	
@@ -59,12 +241,13 @@ public class CtrlListeAnnule {
     			listeFiltree.add(resAn);
     		}
     	}
-    	
+    	tableViewAnnule.getItems().clear();
+    	System.out.println(listeFiltree);
     	tableViewAnnule.setItems(listeFiltree);
     }
     
     @FXML
-    void recherche(KeyEvent event) 
+    void recherche(KeyEvent event) throws ParseException 
     {
     	filtrerListe(txt_Filtrer.getText());    	
     }
@@ -107,5 +290,18 @@ public class CtrlListeAnnule {
 
         DataBase.chargerReservationsAnnulees();
         tableViewAnnule.setItems(DataBase.getAnnulations());
+                
+        /*-------------------------------------------------------------------------*/
+        
+        optionsTri.add("Nom du spectacle");
+        optionsTri.add("Date de représentation");
+        optionsTri.add("Date d'annulation");
+        optionsTri.add("Numéro de client");
+        
+        bnTrier.setItems(optionsTri);
+        
     }
+    
+    
+
 }

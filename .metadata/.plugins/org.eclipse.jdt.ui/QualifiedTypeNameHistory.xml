@@ -4,8 +4,12 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.Character"/>
     <fullyQualifiedTypeName name="donnees.Zone"/>
-    <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="donnees.Fauteuil"/>
-    <fullyQualifiedTypeName name="modele.ReservationAnnulee"/>
     <fullyQualifiedTypeName name="controleur.Main"/>
+    <fullyQualifiedTypeName name="javafx.collections.ObservableList"/>
+    <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="vue.CtrlListeAnnule"/>
+    <fullyQualifiedTypeName name="modele.ReservationAnnulee"/>
 </qualifiedTypeNameHistroy>

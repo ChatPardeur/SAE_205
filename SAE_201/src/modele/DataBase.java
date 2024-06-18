@@ -11,12 +11,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class DataBase {
-	static private ObservableList<ReservationAnnulee> annulations = FXCollections.observableArrayList();
+	static private ObservableList<ReservationAnnulee> reservationsAnnulees = FXCollections.observableArrayList();
 	static public ObservableList<Zone> zones = FXCollections.observableArrayList();
 	
 	
 	static public void chargerReservationsAnnulees() throws ParseException
 	{
+		reservationsAnnulees.clear();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 		
 		Zone z = new Zone("balcon");
@@ -25,53 +26,61 @@ public class DataBase {
 		Client c2 = new Client("Bramard", "Lucien", "là", "0102030405", "mail117bis@gmail.com", "123");
 		Client c3 = new Client("Faubourd", "Gertrude", "rue", "0203040506", "GertrudeF@gmail.com", "096");
 		Client c4 = new Client("Castille", "Claude", "avenue", "0506070809", "cc@orange.com", "452");
-		Spectacle s = new Spectacle("spectacle_test", 100, 100, "concert");
-		Representation r = new Representation("lundi", "20h", true, s);
 		
+		Spectacle s1 = new Spectacle("Jhonny resurrection", 100, 100, "concert");
+		Spectacle s2 = new Spectacle("Hamlet", 200, 200, "pièce de théâtre");
+		Spectacle s3 = new Spectacle("ABBA", 50, 10, "concert");
+		Spectacle s4 = new Spectacle("Le lac des cygnes", 200, 200, "ballet");
+		
+		Representation rep1 = new Representation(formatter.parse("30-Nov-2009"), "20h", true, s1);
+		Representation rep2 = new Representation(formatter.parse("04-Jul-2015"), "17h", true, s2);
+		Representation rep3 = new Representation(formatter.parse("10-Oct-2023"), "20h", true, s3);
+		Representation rep4 = new Representation(formatter.parse("17-May-2020"), "17h", true, s4);
+
 		
 		AnnulationClient a1 = new AnnulationClient(formatter.parse("19-Nov-2009"), true, 
 									new Reservation(formatter.parse("17-Nov-2009"), formatter.parse("17-Nov-2009"), c1));
-		a1.getReservation().setRepresentation(r);
-		a1.getReservation().getRepresentation().setSpectacle(s);
-		a1.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s, z , 10));
+		a1.getReservation().setRepresentation(rep1);
+		a1.getReservation().getRepresentation().setSpectacle(s1);
+		a1.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s1, z , 10));
 		a1.setRemboursementEffectue(true);
 		ReservationAnnulee r1 = new ReservationAnnulee(a1);
 		
 		AnnulationClient a2 = new AnnulationClient(formatter.parse("25-Jun-2015"), true, 
 									new Reservation(formatter.parse("14-Jun-2015"), formatter.parse("14-Jun-2015"), c2));
-		a2.getReservation().setRepresentation(r);
-		a2.getReservation().getRepresentation().setSpectacle(s);
-		a2.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s, z , 12));
+		a2.getReservation().setRepresentation(rep2);
+		a2.getReservation().getRepresentation().setSpectacle(s2);
+		a2.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s2, z , 12));
 		a2.setRemboursementEffectue(false);
 		ReservationAnnulee r2 = new ReservationAnnulee(a2);
 		
 		
 		AnnulationClient a3 = new AnnulationClient(formatter.parse("01-Oct-2023"), true, 
 				new Reservation(formatter.parse("31-Sep-2023"), formatter.parse("31-Sep-2023"), c3));
-		a3.getReservation().setRepresentation(r);
-		a3.getReservation().getRepresentation().setSpectacle(s);
-		a3.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s, z , 15));
+		a3.getReservation().setRepresentation(rep1);
+		a3.getReservation().getRepresentation().setSpectacle(s3);
+		a3.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s3, z , 15));
 		a3.setRemboursementEffectue(false);
 		ReservationAnnulee r3 = new ReservationAnnulee(a3);
 		
 		
 		AnnulationClient a4 = new AnnulationClient(formatter.parse("04-May-2020"), true, 
 				new Reservation(formatter.parse("04-May-2020"), formatter.parse("04-May-2020"), c4));
-		a4.getReservation().setRepresentation(r);
-		a4.getReservation().getRepresentation().setSpectacle(s);
-		a4.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s, z , 15));
+		a4.getReservation().setRepresentation(rep2);
+		a4.getReservation().getRepresentation().setSpectacle(s4);
+		a4.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s4, z , 15));
 		a4.setRemboursementEffectue(false);
 		ReservationAnnulee r4 = new ReservationAnnulee(a4);
 		
-		annulations.add(r1);
-		annulations.add(r2);
-		annulations.add(r3);
-		annulations.add(r4);
+		reservationsAnnulees.add(r1);
+		reservationsAnnulees.add(r2);
+		reservationsAnnulees.add(r3);
+		reservationsAnnulees.add(r4);
 		
 	}
 
 	public static ObservableList<ReservationAnnulee> getAnnulations() {
-		return annulations;
+		return reservationsAnnulees;
 	}
 
 

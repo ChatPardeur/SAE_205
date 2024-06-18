@@ -1,0 +1,171 @@
+package vue;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Locale;
+
+import controleur.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import modele.DataBase;
+import modele.ReservationAnnulee;
+
+public class CtrlListeAnnule {
+
+    @FXML
+    private Button bnQuitter;
+
+    @FXML
+    private ComboBox<String> bnTrier;
+
+    @FXML
+    private TableView<ReservationAnnulee> tableViewAnnule;
+    
+    ObservableList<String> optionsTri = FXCollections.observableArrayList();
+    
+
+    @FXML
+    private TextField txt_Filtrer;
+
+    @FXML
+    void clickQuitter(ActionEvent event) {
+        Main.fermerListe();
+    }
+
+    @FXML
+    void clickTrier(ActionEvent event) 
+    {
+    	System.out.println(bnTrier.getSelectionModel().getSelectedItem());
+    }
+    
+    public static Integer compareDates(String d1, String d2) throws ParseException		//renvoie un entier positif si d1 > d2
+    {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+		
+		Date date1 = formatter.parse(d1);
+		Date date2 = formatter.parse(d2);
+		
+
+    	return date1.compareTo(date2);
+    }
+    
+    public ReservationAnnulee DatePlusAncienne(ObservableList<ReservationAnnulee> annulations) throws ParseException
+    {
+    	ObservableList<ReservationAnnulee> annulations_actuelles = FXCollections.observableArrayList();
+    	
+    	Iterator<ReservationAnnulee> it = annulations_actuelles.iterator();
+    	ReservationAnnulee plusAncienne = it.next();
+    	
+    	while(it.hasNext())
+    	{
+    		ReservationAnnulee resActuelle = it.next();
+    		
+    		if(compareDates(plusAncienne.getDateAnnulation(), resActuelle.getDateAnnulation()) < 0)
+    		{
+    			plusAncienne = resActuelle;
+    		}
+    	}
+    	
+    	return plusAncienne;
+    }
+    
+    public void trieDate(String input)
+    {
+
+    }
+    
+    private void filtrerListe(String texte)
+    {
+    	ObservableList<ReservationAnnulee> listeFiltree = FXCollections.observableArrayList();
+    	ObservableList<ReservationAnnulee> listeAnnulations = DataBase.getAnnulations();
+    	ReservationAnnulee resAn;
+    	
+    	Iterator<ReservationAnnulee> it = listeAnnulations.iterator();
+    	
+    	while(it.hasNext())
+    	{
+    		resAn = it.next();
+    		if(resAn.numCommencePar(texte))
+    		{
+    			listeFiltree.add(resAn);
+    		}
+    	}
+    	
+    	tableViewAnnule.setItems(listeFiltree);
+    }
+    
+    @FXML
+    void recherche(KeyEvent event) 
+    {
+    	filtrerListe(txt_Filtrer.getText());    	
+    }
+
+    @FXML
+    private void initialize() throws ParseException {
+    	tableViewAnnule.getColumns().clear();
+    	
+        TableColumn<ReservationAnnulee, String> c1 = new TableColumn<>("Nom client");
+        c1.setCellValueFactory(new PropertyValueFactory<>("nomClient"));
+        tableViewAnnule.getColumns().add(c1);
+
+        TableColumn<ReservationAnnulee, String> c2 = new TableColumn<>("N° client");
+        c2.setCellValueFactory(new PropertyValueFactory<>("numClient"));
+        tableViewAnnule.getColumns().add(c2);
+
+        TableColumn<ReservationAnnulee, String> c3 = new TableColumn<>("Nom spectacle");
+        c3.setCellValueFactory(new PropertyValueFactory<>("nomSpectacle"));
+        tableViewAnnule.getColumns().add(c3);
+
+        TableColumn<ReservationAnnulee, String> c4 = new TableColumn<>("Date et heure");
+        c4.setCellValueFactory(new PropertyValueFactory<>("dateHeure"));
+        tableViewAnnule.getColumns().add(c4);
+
+        TableColumn<ReservationAnnulee, String> c5 = new TableColumn<>("Date d'annulation");
+        c5.setCellValueFactory(new PropertyValueFactory<>("dateAnnulation"));
+        tableViewAnnule.getColumns().add(c5);
+
+        TableColumn<ReservationAnnulee, String> c6 = new TableColumn<>("Billets vendus");
+        c6.setCellValueFactory(new PropertyValueFactory<>("nbBilletsVendus"));
+        tableViewAnnule.getColumns().add(c6);
+
+        TableColumn<ReservationAnnulee, String> c7 = new TableColumn<>("Billets retournés");
+        c7.setCellValueFactory(new PropertyValueFactory<>("nbBilletsRetournes"));
+        tableViewAnnule.getColumns().add(c7);
+
+        TableColumn<ReservationAnnulee, String> c8 = new TableColumn<>("Total remboursement");
+        c8.setCellValueFactory(new PropertyValueFactory<>("totalRemboursement"));
+        tableViewAnnule.getColumns().add(c8);
+
+        DataBase.chargerReservationsAnnulees();
+        tableViewAnnule.setItems(DataBase.getAnnulations());
+        
+        /*-------------------------------------------------------------------------*/
+        
+        optionsTri.add("Trier");
+        optionsTri.add("Nom du spectacle");
+        optionsTri.add("Date de représentation");
+        optionsTri.add("Date d'annulation");
+        optionsTri.add("Numéro de client");
+        
+        bnTrier.setItems(optionsTri);
+    }
+
+    public static void main(String[] args) throws ParseException 
+    {
+    	
+		System.out.println(CtrlListeAnnule.compareDates("27-Nov-2009", "19-Nov-2009"));
+	}
+}
