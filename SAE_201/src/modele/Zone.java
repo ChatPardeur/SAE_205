@@ -87,7 +87,7 @@ public class Zone {
     }
 
     public boolean ajouterFauteuils(int nbLignes, int nbColumn) {
-        if (nbLignes > 25) {
+        if (nbLignes > 26) {
             System.out.println("erreur : il ne peut pas y avoir plus de 25 rangées");
             return false;
         } else {

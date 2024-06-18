@@ -77,8 +77,17 @@ public class CtrlCreationZone {
             return;
         }
 
-        if (nbRangees > 25) {
+        if (nbRangees > 26) {
             afficherMessage("Erreur Lignes/Colonnes", "Le nombre de lignes ne peut pas dépasser 25.");
+            return;
+        }
+        if (nbRangees <= 0) {
+            afficherMessage("Erreur Lignes/Colonnes", "Le nombre de lignes doit être supérieur à 0.");
+            return;
+        }
+
+        if (nbNumeros <= 0) {
+            afficherMessage("Erreur Lignes/Colonnes", "Le nombre de colonnes doit être supérieur à 0.");
             return;
         }
 
