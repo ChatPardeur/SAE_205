@@ -33,11 +33,5 @@ public class CtrlAccueil {
     {
     	Main.fermerAccueil();
     }
-    
-    @FXML
-    private void initialize()
-    {
-    	bnQuitter.setCancelButton(true);
-    }
 
 }

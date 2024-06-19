@@ -5,13 +5,14 @@
 		<item key="DIALOG_Y_ORIGIN" value="349"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="getAnnulations"/>
+		<item key="selection" value="cc"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="cc"/>
 			<item value="getAnnulations"/>
 			<item value="chargerReservationsAnnulees"/>
 			<item value="listeZones"/>

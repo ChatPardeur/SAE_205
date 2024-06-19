@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.CtrlCreationZone">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vue.CtrlCreationZone">
    <children>
       <AnchorPane prefHeight="580.0" prefWidth="650.0">
          <children>
@@ -39,7 +39,7 @@
                </font>
             </Text>
             <Text layoutX="382.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(ex : Balcon)" />
-            <TextField fx:id="nbColonne" layoutX="175.0" layoutY="368.0" prefHeight="26.0" prefWidth="73.0" promptText="(1-26)" />
+            <TextField fx:id="nbColonne" layoutX="175.0" layoutY="368.0" prefHeight="26.0" prefWidth="73.0" />
             <Button fx:id="bnCreer" layoutX="482.0" layoutY="534.0" mnemonicParsing="false" onAction="#clickCreer" prefWidth="100.0" text="Créer la zone" />
             <Button fx:id="bnAnnuler" layoutX="616.0" layoutY="534.0" mnemonicParsing="false" onAction="#clickAnnuler" prefWidth="100.0" text="Annuler" />
          </children>

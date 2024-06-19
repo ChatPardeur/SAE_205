@@ -251,9 +251,7 @@ public class CtrlListeAnnule {
     }
 
     @FXML
-    private void initialize() throws ParseException 
-    {
-    	bnQuitter.setCancelButton(true);
+    private void initialize() throws ParseException {
     	tableViewAnnule.getColumns().clear();
     	
         TableColumn<ReservationAnnulee, String> c1 = new TableColumn<>("Nom client");

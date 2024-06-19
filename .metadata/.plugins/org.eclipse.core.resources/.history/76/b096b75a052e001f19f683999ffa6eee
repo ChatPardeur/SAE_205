@@ -116,10 +116,4 @@ public class CtrlCreationZone {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    
-    @FXML
-    private void initialize()
-    {
-    	bnAnnuler.setCancelButton(true);
-    }
 }

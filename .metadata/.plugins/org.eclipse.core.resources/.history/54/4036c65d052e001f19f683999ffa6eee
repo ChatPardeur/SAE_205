@@ -120,6 +120,6 @@ public class CtrlCreationZone {
     @FXML
     private void initialize()
     {
-    	bnAnnuler.setCancelButton(true);
+    	bnQuitter.setCancelButton(true);
     }
 }

@@ -54,8 +54,6 @@ public class CtrlGestionZone {
     }
     
     public void initialize() {
-    	
-    	bnQuitter.setCancelButton(true);
         if (colNom != null) {
             colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         }
