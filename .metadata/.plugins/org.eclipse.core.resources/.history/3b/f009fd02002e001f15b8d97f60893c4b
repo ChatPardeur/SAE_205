@@ -225,6 +225,7 @@ public class CtrlListeAnnule {
     
     private void filtrerListe(String texte) throws ParseException
     {
+    	System.out.println("cc");
 		ObservableList<ReservationAnnulee> listeFiltree = FXCollections.observableArrayList();
 		DataBase.chargerReservationsAnnulees();
     	ObservableList<ReservationAnnulee> listeAnnulations = DataBase.getAnnulations();
@@ -241,6 +242,7 @@ public class CtrlListeAnnule {
     		}
     	}
     	tableViewAnnule.getItems().clear();
+    	System.out.println(listeFiltree);
     	tableViewAnnule.setItems(listeFiltree);
     }
     

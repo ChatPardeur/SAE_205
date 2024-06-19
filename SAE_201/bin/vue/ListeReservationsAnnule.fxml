@@ -64,7 +64,7 @@
                   </TableView>
                </content>
             </ScrollPane>
-            <TextField fx:id="txt_Filtrer" layoutX="10.0" layoutY="25.0" onKeyReleased="#recherche" prefHeight="26.0" prefWidth="401.0" />
+            <TextField fx:id="txt_Filtrer" layoutX="10.0" layoutY="25.0" onKeyReleased="#recherche" prefHeight="26.0" prefWidth="401.0" promptText="Filtrer N° client" />
             <ComboBox fx:id="bnTrier" layoutX="580.0" layoutY="25.0" onAction="#clickTrier" prefWidth="150.0" promptText="Trier" />
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="388.0" layoutY="25.0">
                <image>
