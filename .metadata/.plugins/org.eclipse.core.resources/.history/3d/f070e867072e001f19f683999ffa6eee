@@ -268,7 +268,7 @@ public class CtrlListeAnnule {
         c3.setCellValueFactory(new PropertyValueFactory<>("nomSpectacle"));
         tableViewAnnule.getColumns().add(c3);
 
-        TableColumn<ReservationAnnulee, String> c4 = new TableColumn<>("Date et heure représentation");
+        TableColumn<ReservationAnnulee, String> c4 = new TableColumn<>("Date et heure");
         c4.setCellValueFactory(new PropertyValueFactory<>("dateHeure"));
         tableViewAnnule.getColumns().add(c4);
 

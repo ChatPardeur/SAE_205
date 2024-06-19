@@ -72,11 +72,9 @@ public class DataBase {
 		ReservationAnnulee r3 = new ReservationAnnulee(a3);
 		
 		
-		AnnulationClient a4 = new AnnulationClient(formatter.parse("04-May-2020"), false, 
+		AnnulationClient a4 = new AnnulationClient(formatter.parse("04-May-2020"), true, 
 				new Reservation(formatter.parse("04-May-2020"), formatter.parse("04-May-2020"), c4));
 		a4.getReservation().setRepresentation(rep4);
-		a4.getReservation().ajouteBillet(new Billet(a4.getReservation(), null, new Abonne()));
-
 		a4.getReservation().getRepresentation().setSpectacle(s4);
 		a4.getReservation().getRepresentation().getSpectacle().setTarif(new Tarif(s4, z , 15));
 		a4.setRemboursementEffectue(false);

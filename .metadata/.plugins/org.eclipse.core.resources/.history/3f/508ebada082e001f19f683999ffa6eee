@@ -98,7 +98,12 @@ public class CtrlCreationZone {
         } else {
             DataBase.ajouterZone(zone); // Ajouter la zone à la base de données
             afficherMessage("Succès", "Zone créée avec succès.");
-           
+            
+            System.out.println("Zone créée :");
+            System.out.println("Nom : " + zone.getNom());
+            System.out.println("Nombre de lignes : " + nbRangees);
+            System.out.println("Nombre de colonnes : " + nbNumeros);
+            zone.listerFauteuils();
             
            
             Main.fermerCreationZone();

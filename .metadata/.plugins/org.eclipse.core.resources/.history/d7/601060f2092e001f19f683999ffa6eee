@@ -11,8 +11,7 @@ import vue.FenGestionZone;
 import vue.FenListe;
 import vue.CtrlGestionZone;
 
-public class Main extends Application
-{
+public class Main extends Application{
 	static private FenAccueil fnAccueil;
 	static private FenCreationZone fnCreationZone;
 	static private FenGestionZone fnGestionZone;
